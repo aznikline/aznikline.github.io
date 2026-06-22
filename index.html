@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>aznikline — Mason</title>
+<meta name="description" content="Mason (aznikline) — systems engineer working at the boundary of AI agents, quantitative research, and low-level engineering.">
+<style>
+  :root {
+    --bg: #0c0e12;
+    --bg-elev: #14171d;
+    --fg: #e6e9ef;
+    --fg-dim: #9aa3b2;
+    --fg-mute: #5b6472;
+    --accent: #7dd3fc;
+    --accent-2: #a78bfa;
+    --rule: #232733;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  header.top {
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 0 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .brand { font-family: var(--mono); font-size: 14px; color: var(--fg-dim); letter-spacing: 0.02em; }
+  .brand .at { color: var(--accent); }
+  .nav { font-family: var(--mono); font-size: 13px; display: flex; gap: 18px; }
+  .nav a { color: var(--fg-mute); text-decoration: none; transition: color .15s; }
+  .nav a:hover { color: var(--fg); }
+
+  section { padding: 56px 0; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: none; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--fg-mute);
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 7vw, 3.6rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 22px;
+  }
+  h1 .grad {
+    background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .lede { font-size: 1.18rem; color: var(--fg-dim); max-width: 60ch; }
+  .lede strong { color: var(--fg); font-weight: 600; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--fg-dim);
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  .proj { padding: 22px 0; border-bottom: 1px solid var(--rule); }
+  .proj:last-child { border-bottom: none; }
+  .proj-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .proj-name { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em; }
+  .proj-name a { color: var(--fg); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .15s; }
+  .proj-name a:hover { border-bottom-color: var(--accent); }
+  .proj-meta { font-family: var(--mono); font-size: 12px; color: var(--fg-mute); white-space: nowrap; }
+  .proj-desc { color: var(--fg-dim); margin-top: 8px; max-width: 62ch; }
+  .proj-link { font-family: var(--mono); font-size: 13px; color: var(--accent); text-decoration: none; margin-top: 10px; display: inline-block; }
+  .proj-link:hover { text-decoration: underline; }
+
+  .timeline-item { padding: 16px 0; display: grid; grid-template-columns: 92px 1fr; gap: 16px; }
+  .timeline-item:not(:last-child) { border-bottom: 1px solid var(--rule); }
+  .timeline-when { font-family: var(--mono); font-size: 12px; color: var(--fg-mute); padding-top: 3px; }
+  .timeline-what { color: var(--fg-dim); }
+  .timeline-what strong { color: var(--fg); font-weight: 600; }
+
+  .links { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .link-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+  .link-row:last-child { border-bottom: none; }
+  .link-row a { color: var(--fg); text-decoration: none; font-weight: 500; }
+  .link-row a:hover { color: var(--accent); }
+  .link-handle { font-family: var(--mono); font-size: 13px; color: var(--fg-mute); }
+
+  footer.bottom {
+    padding: 40px 0 64px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--fg-mute);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 540px) {
+    .timeline-item { grid-template-columns: 1fr; gap: 4px; }
+    .timeline-when { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand"><span class="at">@</span>aznikline</div>
+    <nav class="nav">
+      <a href="#work">work</a>
+      <a href="#thread">thread</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="eyebrow">systems engineer</div>
+    <h1>I rebuild things <span class="grad">small enough</span> to understand them completely.</h1>
+    <p class="lede">Mason. I work at the boundary of <strong>AI agents, quantitative research, and low-level engineering</strong> — writing source-first implementations I can read end to end, rather than hiding behind frameworks.</p>
+    <div class="tags">
+      <span class="tag">AI agents</span>
+      <span class="tag">quant systems</span>
+      <span class="tag">OS / kernels</span>
+      <span class="tag">OSINT &amp; AI security</span>
+      <span class="tag">source-first</span>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="eyebrow">selected work</div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <div class="proj-name"><a href="https://github.com/aznikline/nanoagent">nanoagent</a></div>
+        <div class="proj-meta">python · ⭐</div>
+      </div>
+      <div class="proj-desc">A source-first study of how agent capabilities accumulate — tool calling → memory → subagents → teams → context compaction → safety, one chapter at a time in ~100 lines of Python each. Read it like a book.</div>
+      <a class="proj-link" href="https://github.com/aznikline/nanoagent">github.com/aznikline/nanoagent →</a>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <div class="proj-name"><a href="https://github.com/aznikline/alpha-mining-system">alpha-mining-system</a></div>
+        <div class="proj-meta">python · ⭐</div>
+      </div>
+      <div class="proj-desc">A modular Alpha factor mining platform — genetic programming + DeepAlpha + a WorldQuant-style expression engine — across A-share and US markets. CLI, Streamlit, and notebook-first APIs.</div>
+      <a class="proj-link" href="https://github.com/aznikline/alpha-mining-system">github.com/aznikline/alpha-mining-system →</a>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <div class="proj-name"><a href="https://github.com/aznikline/interview">interview</a></div>
+        <div class="proj-meta">python · ⭐</div>
+      </div>
+      <div class="proj-desc">An engineered interview library, not a link dump — original handbook content + training tracks, backed by a toolchain (content index, doc linter, progress dashboard) and passing tests.</div>
+      <a class="proj-link" href="https://github.com/aznikline/interview">github.com/aznikline/interview →</a>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <div class="proj-name"><a href="https://github.com/aznikline/rust-binance">rust-binance</a></div>
+        <div class="proj-meta">rust</div>
+      </div>
+      <div class="proj-desc">An async Rust client for Binance Spot REST APIs, inspired by python-binance — focused on the most valuable Spot surface first rather than chasing full parity.</div>
+      <a class="proj-link" href="https://github.com/aznikline/rust-binance">github.com/aznikline/rust-binance →</a>
+    </div>
+  </section>
+
+  <section id="thread">
+    <div class="eyebrow">the thread</div>
+    <div class="timeline-item">
+      <div class="timeline-when">now</div>
+      <div class="timeline-what"><strong>AI safety &amp; OSINT tooling.</strong> Contributing to maigret (3000+ site username dossier) and following shannon (white-box AI pentester). Experimenting with agent safety boundaries.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-when">recent</div>
+      <div class="timeline-what"><strong>AI agents.</strong> nanoagent — a compact reference for what an agent actually needs to act, remember, delegate, coordinate, compress, and stay safe.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-when">earlier</div>
+      <div class="timeline-what"><strong>Quantitative research.</strong> Alpha factor mining systems and backtesting pipelines — genetic programming and deep factor discovery.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-when">roots</div>
+      <div class="timeline-what"><strong>Systems &amp; vision.</strong> An aarch64 microkernel (capability-based IPC, scheduler, memory) and early academic work on visual object tracking.</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="eyebrow">elsewhere</div>
+    <div class="links">
+      <div class="link-row">
+        <a href="https://github.com/aznikline">GitHub</a>
+        <span class="link-handle">@aznikline</span>
+      </div>
+      <div class="link-row">
+        <a href="https://github.com/aznikline/aznikline">Profile README</a>
+        <span class="link-handle">github.com/aznikline</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bottom">
+    <span>© 2026 Mason · aznikline</span>
+    <span>built static · no tracker</span>
+  </footer>
+
+</div>
+</body>
+</html>
